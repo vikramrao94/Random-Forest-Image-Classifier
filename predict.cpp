@@ -118,8 +118,6 @@ int main(){
     Mat img=imread(paths[i],IMREAD_GRAYSCALE);
     resize(img, img, Size(200,300), CV_INTER_LINEAR);
     Rect roi(20,50,160,160);
-    //resize(img, img, Size(275,400), CV_INTER_LINEAR);
-    //Rect roi(40,75,200,200);
     Mat region=img(roi);
     //medianBlur ( region, region, 3 );
     auto start=startTime();

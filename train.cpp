@@ -18,9 +18,9 @@ using json = nlohmann::json;
 
 
 int bin=9;
-int patch_size=4;
+int patch_size=8;
 
-int treeSize=5000;
+int treeSize=100;
 int treeDepth=16;//16 default
 int max_cat=15;//15 default
 int min_sample_count=10;//10 default
@@ -58,7 +58,7 @@ inline TermCriteria TC(int iters, double eps) {
     return TermCriteria(TermCriteria::MAX_ITER + (eps > 0 ? TermCriteria::EPS : 0), iters, eps);
 }
 
-static Ptr<TrainData> prepare_train_data(const Mat& data, const Mat& responses, long int ntrain_samples) {
+static Ptr<TrainData> prepareTrainData(const Mat& data, const Mat& responses, long int ntrain_samples) {
     Mat sample_idx = Mat::zeros( 1, data.rows, CV_8U );
     cout<<"Samples idx size: "<<sample_idx.size()<<endl;
     Mat train_samples = sample_idx.colRange(0, ntrain_samples);
@@ -137,7 +137,7 @@ int main(){
   cout<<"Training random forest classifier..."<<endl;
   cout<<"Number of samples: "<<samples.rows<<endl;
 
-  Ptr<TrainData> tdata = prepare_train_data(samples, labelsMat, samples.rows);
+  Ptr<TrainData> tdata = prepareTrainData(samples, labelsMat, samples.rows);
   cout<<"prepped training data!!"<<endl;
   Ptr<RTrees> model;
   //long int minS=samples.rows*0.01;
